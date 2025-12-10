@@ -7,6 +7,8 @@
   <title>Course</title>
   <link rel="stylesheet" href="Style/style.css">
   <link rel="stylesheet" href="Style/snow.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <header class="header" id="header">
   <div class="snow"></div>
@@ -15,6 +17,14 @@
       <img src="picture/logo.png" class="logo">
     </a>
     <nav class="nav ">
+      <div class="nav-res">
+        <a id="btnIcon" class="link-icon"> <i class="fa-solid fa-list"></i></a>
+        <ul class="sub-nav">
+          <li>Home</li>
+          <li>About</li>
+          <li>Register</li>
+        </ul>
+      </div>
       <ul class="nav-menu">
         <li><a href="/" class="nav-link ">Home</a></li>
         <li><a href="/" class="nav-link">About</a></li>
@@ -27,62 +37,76 @@
     <div class="nav-toggle" id="nav-toggle">
       <i class="fas fa-bars"></i>
     </div>
-  
+
   </div>
 </header>
 
 <body>
-       <section id="p1">
-              <div class="content">
-                  <div class="content-left"></div>
-                  <div class="content-right"></div>
-              </div>
-                  </section>
+  <div id="body">
+    <section id="box-register">
+      <div class="content">
+        <div class="content-left">
+          <img src="picture/tl-removebg-preview.png" alt="">
+        </div>
+        <div class="content-right">
+          <div id="register">
+            <input id="gmail" type="email" placeholder="Email của bạn">
+            <input id="hoTen" type="text" placeholder="Họ và Tên của bạn">
+            <input id="sdt" type="text" placeholder=" số điện thoại của bạn">
+            <a class="contact-2" href="">Register</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
 
 </body>
 
-<footer class="footer" id="footer" >
+<footer class="footer" id="footer">
   <div class="snow"></div>
-       <div class="footer-list">
-          <div class="footer-data">
-              <div class="footer-data-social">
-                  <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                  <a href=""><i class='bx bxl-instagram' ></i></a>
-                  <a href=""><i class='bx bxl-twitter' ></i></a>
-                  <a href=""><i class='bx bxl-youtube' ></i></a>
-              </div>
-              <div class="dowload">
-                   <img src="picture/download-removebg-preview.png" alt="">
-              </div>
-          </div>
-
-          <div class="footer-data">
-               <h2>Course</h2>
-               <p>Careers</p>
-               <p>Afilliate</p>
-               <p>Business</p>
-          </div>
-
-          <div class="footer-data">
-            <h2>Contact</h2>
-            <p>Blog</p>
-            <p>Contact Us</p>
-            <p>Help center</p>
-            <p>Media Kit</p>
-       </div>
-
-       <div class="footer-data">
-           <h2>Legal</h2>
-           <p>Term Of Policy</p>
-           <p>Praivacy</p>
-           <p>Accessibilyty Policy</p>
-           <p>Trademark policy</p>
+  <div class="footer-list">
+    <div class="footer-data">
+      <div class="footer-data-social">
+        <a href=""><i class='bx bxl-facebook-circle'></i></a>
+        <a href=""><i class='bx bxl-instagram'></i></a>
+        <a href=""><i class='bx bxl-twitter'></i></a>
+        <a href=""><i class='bx bxl-youtube'></i></a>
       </div>
+      <div class="dowload">
+        <img src="picture/download-removebg-preview.png" alt="">
+      </div>
+    </div>
+
+    <div class="footer-data">
+      <h2>Course</h2>
+      <p>Careers</p>
+      <p>Afilliate</p>
+      <p>Business</p>
+    </div>
+
+    <div class="footer-data">
+      <h2>Contact</h2>
+      <p>Blog</p>
+      <p>Contact Us</p>
+      <p>Help center</p>
+      <p>Media Kit</p>
+    </div>
+
+    <div class="footer-data">
+      <h2>Legal</h2>
+      <p>Term Of Policy</p>
+      <p>Praivacy</p>
+      <p>Accessibilyty Policy</p>
+      <p>Trademark policy</p>
+    </div>
   </div>
-   <div class="copy">
-       <p>&copy; All Rights Reserved</p>
-       <span>Created Web By 🧡  US 😁 😁  😁  😁  😁   🧡</span>
-   </div>
-     </footer>
+  <div class="copy">
+    <p>&copy; All Rights Reserved</p>
+    <span>Created Web By 🧡 US 😁 😁 😁 😁 😁 🧡</span>
+  </div>
+</footer>
+
+<script src="js/action.js" defer></script>
 
 </html>
