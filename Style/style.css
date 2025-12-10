@@ -2,7 +2,9 @@
 
 :root{
     --header-height: 7rem;
+   
     /* color */
+    --topiccolor : #16325b ;
     --bg1: #fff;
     --bg2: #faf8f8;
     --text: #363636;
@@ -55,7 +57,7 @@ body{
 .header{
     width: 100%;
     height: var(--header-height);
-    background-color: #16325b;
+    background-color: var(--topiccolor);
     padding: 1rem 1.25rem;
     position: fixed;
     top: 0;
@@ -263,9 +265,117 @@ header .nav-us img:hover{
     padding: 4px 21px;
     border-radius: 5px;
 }
-
-
 /* end header section */
 
 /* Start Home Section */
 
+#p1 .content{
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    padding: 5px 20px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+    margin-top: 150px;
+    background-color: var(--topiccolor) ;
+    color: #fff;
+ }
+
+ .footer-list{
+     padding: 2rem 3rem ;
+     max-width: 1200px;
+     margin: 0 auto;
+     display: grid;
+     grid-template-columns:  repeat(4, 1fr);
+     gap : 1rem;
+     align-items: center;
+     border-bottom: 1px solid var(--orange);
+ }
+
+ .footer-data{
+    text-align: center;
+    margin-bottom: 1rem;
+
+ }
+
+ .footer-data > a > img{
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+ }
+
+ .footer-data-social{
+    margin-top: 1rem;
+ }
+
+ .footer-data-social i{
+    color: #fff;
+    font-size: var(--h1-font-size);
+ }
+
+ .footer-data-social i:hover{
+    opacity: 0.6;
+    margin: 8px;
+    transform: scale(1.7);
+    color: var(--orange);
+ }
+
+ .footer-data .dowload{
+ }
+
+ .footer-data .dowload img{
+    width: 200px;
+    margin-top: -31px;
+    cursor: pointer;
+ }
+
+ .footer-data h2{
+    font-weight: 700;
+    font-size: var(--h2-font-size);
+    line-height: 1.5rem ;
+    text-transform: capitalize;
+    color: var(--orange);
+ }
+
+ .footer-data p {
+    font-size: var(--h3-font-size);
+    font-weight: 400;
+    line-height: 2rem;
+    text-align: center;
+    cursor: pointer;
+ }
+
+ .footer-data p:hover{
+    text-decoration: underline;
+ }
+
+  .copy{
+    text-align: center;
+    padding: 1rem 0;
+ }
+
+ .copy p{
+    font-weight: 700;
+    line-height: 1.5rem;
+ }
+
+ .copy span{
+    font-size: var(--small-font-size);
+    line-height: 1rem;
+ }
