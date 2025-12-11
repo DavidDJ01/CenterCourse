@@ -17,9 +17,8 @@
   top: -50%;
   left: -50%;
   background-image:
-    radial-gradient(white 2px, transparent 2px),
-    radial-gradient(white 1px, transparent 1px);
-  background-size: 20px 20px, 30px 30px, 10px 10px;
+        radial-gradient(white 3px, transparent 3px);
+  background-size:30px 30px;
   opacity: 0.2;
 }
 /* LAYER 1 */

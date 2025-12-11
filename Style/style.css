@@ -589,7 +589,8 @@ footer {
     display: flex;
     margin-bottom: -20px;
     color: #fff;
-    left: -25px;
+    position: relative;
+
 }
 
 .error {
