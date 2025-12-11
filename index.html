@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="Style/style.css">
   <link rel="stylesheet" href="Style/snow.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <header class="header" id="header">
   <div class="snow"></div>
@@ -45,15 +45,28 @@
   <div id="body">
     <section id="box-register">
       <div class="content">
-        <div class="content-left">
-          <img src="picture/tl-removebg-preview.png" alt="">
-        </div>
+        <div class="snow"></div>
+        <svg class="bgRegister" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice">
+          <image href="picture/register.gif" width="700" height="500" x="0" y="0" />
+        </svg>
         <div class="content-right">
           <div id="register">
-            <input id="gmail" type="email" placeholder="Email của bạn">
-            <input id="hoTen" type="text" placeholder="Họ và Tên của bạn">
-            <input id="sdt" type="text" placeholder=" số điện thoại của bạn">
-            <a class="contact-2" href="">Register</a>
+            <div class="input">
+             <span class="info">Email</span> <span id="gmailError" class="error"></span>
+              <i class="fa-regular fa-envelope"></i><input id="gmail" type="email" placeholder="Email của bạn" required>
+            </div>
+            <div class="input">
+              <span class="info">Họ Tên</span> <span id="hoTenError" class="error"></span>
+              <i class="fa-jelly-fill fa-regular fa-user"></i><input id="hoTen" type="text"
+                placeholder="Họ và Tên của bạn" required>
+            </div>
+            <div class="input">
+              <span class="info">Số điện thoại</span> <span id="sdtError" class="error"></span>
+              <i class="fa-duotone fa-solid fa-phone"></i><input id="sdt" type="text"
+                placeholder=" số điện thoại của bạn" required>
+            </div>
+            <a id="btnRegister" class="contact-2" href="javascript:void(0)">Register</a>
           </div>
         </div>
       </div>
@@ -108,5 +121,6 @@
 </footer>
 
 <script src="js/action.js" defer></script>
+<script src="js/call-Api.js" defer></script>
 
 </html>
