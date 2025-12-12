@@ -303,6 +303,71 @@ header .nav-us img:hover {
 
 }
 
+
+#box-register .content .icon {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(41, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 90;
+    /* Hiệu ứng */
+    top: 20px;
+    left: 15%;
+    transform: scale(1.2);
+    /* scale viết đúng đơn vị (không có px) */
+    animation: floatPc 0.3s ease-in-out infinite alternate;
+}
+
+#box-register .content .icon:hover {
+    opacity: 0.6;
+}
+
+@media (max-width:920px) {
+    #box-register .content .icon {
+        top: 7px;
+        left: 50%;
+        animation: floatMobile 0.3s ease-in-out infinite alternate;
+    }
+}
+
+/* Animation làm icon “trôi nhẹ” đẹp hơn */
+@keyframes floatPc {
+    0% {
+        top: 20px;
+    }
+
+    100% {
+        top: 40px;
+    }
+}
+
+
+@keyframes floatMobile {
+    0% {
+        top: 7px;
+    }
+
+    100% {
+        top: 15px;
+    }
+}
+
+#box-register .content .icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
 .bgRegister {
     position: absolute;
     top: 0;
@@ -336,9 +401,9 @@ header .nav-us img:hover {
 }
 
 .input i {
-    position:  absolute;
-    top : 57%;
-    left : 10px;
+    position: absolute;
+    top: 57%;
+    left: 10px;
     z-index: 10;
 }
 
@@ -594,10 +659,10 @@ footer {
 }
 
 .error {
-    
+
     position: relative;
     right: -60px;
-    z-index: 10;   
+    z-index: 10;
     color: red;
     display: inline-block;
     font-size: 14px;
@@ -606,92 +671,126 @@ footer {
     font-weight: bold;
 }
 
+.notifications {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    left: 10px;
+    /* Cho phép tự co giãn trên mobile */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-  .notifications{
-        position: fixed;
-        top: 30px;
-        right: 20px;
-        z-index: 100;
+.toast {
+    position: relative;
+    padding: 12px;
+    color: #fff;
+    width: 100%;
+    /* Co giãn toàn màn hình điện thoại */
+    max-width: 420px;
+    /* Không quá lớn trên màn hình lớn */
+    margin-left: auto;
+    border-radius: 8px;
+    --color: #0abf30;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    /* Thu nhỏ icon trên mobile */
+    background-image:
+        linear-gradient(to right, #0abf3055, #22242f 30%);
+    animation: show 0.3s ease 1 forwards;
+}
+
+.toast i {
+    color: var(--color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    /* Giảm size icon cho mobile */
+}
+
+.toast .title {
+    font-size: 18px;
+    /* Co lại */
+    font-weight: bold;
+}
+
+.toast span,
+.toast i:nth-child(3) {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+@keyframes show {
+    0% {
+        transform: translateX(100%);
     }
-    .toast{
-        position: relative;
-        padding: 6px;
-        color: #fff;
-        margin-bottom: 10px;
-        width: 500px;
-        display: grid;
-        grid-template-columns: 70px 1fr 70px;
-        border-radius: 5px;
-        --color: #0abf30;
-        background-image: 
-            linear-gradient(
-                to right, #0abf3055, #22242f 30%
-            ); 
-        animation: show 0.3s ease 1 forwards  
+
+    40% {
+        transform: translateX(-5%);
     }
-    .toast i{
-        color: var(--color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: x-large;
+
+    80% {
+        transform: translateX(0%);
     }
-    .toast .title{
-        font-size: x-large;
-        font-weight: bold;
+
+    100% {
+        transform: translateX(-10%);
     }
-    .toast span, .toast i:nth-child(3){
-        color: #fff;
-        opacity: 0.6;
+}
+
+.toast::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color);
+    width: 100%;
+    height: 3px;
+    content: '';
+    box-shadow: 0 0 10px var(--color);
+    animation: timeOut 5s linear 1 forwards;
+
+}
+
+@keyframes timeOut {
+    to {
+        width: 0;
     }
-    @keyframes show{
-        0%{
-            transform: translateX(100%);
-        }
-        40%{
-            transform: translateX(-5%);
-        }
-        80%{
-            transform: translateX(0%);
-        }
-        100%{
-            transform: translateX(-10%);
-        }
+}
+
+.toast.error {
+    --color: #f24d4c;
+    background-image:
+        linear-gradient(to right, #f24d4c55, #22242F 30%);
+}
+
+.toast.warning {
+    --color: #e9bd0c;
+    background-image:
+        linear-gradient(to right, #e9bd0c55, #22242F 30%);
+}
+
+.toast.info {
+    --color: #3498db;
+    background-image:
+        linear-gradient(to right, #3498db55, #22242F 30%);
+}
+
+/* Responsive thêm cho màn hình rất nhỏ (≤ 360px) */
+@media (max-width: 360px) {
+    .toast {
+        grid-template-columns: 35px 1fr 35px;
+        padding: 8px;
     }
-    .toast::before{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-color: var(--color);
-        width: 100%;
-        height: 3px;
-        content: '';
-        box-shadow: 0 0 10px var(--color);
-        animation: timeOut 5s linear 1 forwards
+
+    .toast .title {
+        font-size: 16px;
     }
-    @keyframes timeOut{
-        to{
-            width: 0;
-        }
+
+    .toast span {
+        font-size: 12px;
     }
-    .toast.error{
-        --color: #f24d4c;
-        background-image: 
-            linear-gradient(
-                to right, #f24d4c55, #22242F 30%
-            );
-    }
-    .toast.warning{
-        --color: #e9bd0c;
-        background-image: 
-            linear-gradient(
-                to right, #e9bd0c55, #22242F 30%
-            );
-    }
-    .toast.info{
-        --color: #3498db;
-        background-image: 
-            linear-gradient(
-                to right, #3498db55, #22242F 30%
-            );
-    }
+}
