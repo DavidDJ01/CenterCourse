@@ -39,14 +39,15 @@ $(document).ready(function () {
             $("#sdtError").text("")
             $.ajax({
                 type: "post",
-                url: "https://nodemailerapi-mt0t.onrender.com/api/sendmailer",
+                url: "https://nodemailer-api-tu7e.vercel.app/api/sendmailer",
                 data: guest,
                 success: function (response) {
                     console.log(response)
                  //   console.log(`----info----- \n Gmail : ${response.email} \n Họ Và Tên: ${response.hoTen} \n Số điện thoại: ${response.sdt}`)
                 }
             });
-            console.log(`gmail : ${guest.gmail} tên : ${guest.hoTen}, sdt: ${guest.sdt}`)
+          
+           // console.log(`gmail : ${guest.gmail} tên : ${guest.hoTen}, sdt: ${guest.sdt}`)
         }
 
 
