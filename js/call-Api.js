@@ -49,14 +49,18 @@ $(document).ready(function () {
         guest.hoTen = hoTen
         guest.sdt = sdt
 
-        if (gmail.trim() === "") {
+        if (gmail.trim() === "" ) {
             $("#gmailError").text("* Không được để trống")
+        } else if (!gmail.includes("@")) {
+            $("#gmailError").text("* Gmail ko đúng định dạng")
         }
         else if (hoTen.trim() === "") {
             $("#hoTenError").text("* Không được để trống")
         }
         else if (sdt.trim() === "") {
             $("#sdtError").text("* Không được để trống")
+        } else if (!/^\d{10}$/.test(sdt)) {
+             $("#sdtError").text("*sdt ko đúng định dạng")
         }
         else if (document.cookie.includes(`registeredEmail=${guest.gmail}`)) {
             let type = 'error';
