@@ -425,7 +425,7 @@ header .nav-us img:hover {
 
 #key2 {
     display: flex;
-    padding: 11rem 0;
+    padding: 5rem 0;
     justify-content: space-between;
     align-items: center;
     width: 95%;
@@ -496,7 +496,7 @@ header .nav-us img:hover {
 .slide-frame {
     padding: 0;
     width: 100%;
-    max-width: 620px;
+    max-width: 50vw;
     height: auto;
     overflow: hidden;
     border-radius: 16px;
@@ -526,13 +526,15 @@ header .nav-us img:hover {
     flex-shrink: 0;
 }
 
-@media(min-width:1024px) and (max-width: 1030px) {
+
+
+/* @media(min-width:1024px) and (max-width: 1030px) {
     #key2 {
         display: grid;
         grid-template-columns: 1fr;
-        /* 1 cột */
+
         grid-auto-rows: auto;
-        /* chiều cao tự động theo nội dung */
+  
         gap: 20px;
     }
 
@@ -557,7 +559,7 @@ header .nav-us img:hover {
         height: 100%;
         object-fit: contain;
         object-position: center;
-        /* giữ toàn bộ ảnh, không cắt */
+
 
     }
 
@@ -572,9 +574,9 @@ header .nav-us img:hover {
     #key2 {
         display: grid;
         grid-template-columns: 1fr;
-        /* 1 cột */
+
         grid-auto-rows: auto;
-        /* chiều cao tự động theo nội dung */
+       
         gap: 10px;
     }
 
@@ -604,10 +606,10 @@ header .nav-us img:hover {
         object-fit: contain;
         object-position: center;
 
-        /* giữ toàn bộ ảnh, không cắt */
+       
 
     }
-}
+} */
 
 /* Nav dots */
 .slider-nav {
@@ -638,12 +640,10 @@ header .nav-us img:hover {
 
 
 
-#key2 .content-right img:hover {
+/* #key2 .content-right img:hover {
     transform: scale(1.05);
     transition: transform 0.4s ease;
-}
-
-
+} */
 
 /* @keyframes slideShow {
 
@@ -679,15 +679,35 @@ header .nav-us img:hover {
 
 
 } */
+@media(max-width: 1030px) {
+    #key2 {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-auto-rows: auto;
+        gap: 20px;
+    }
+
+    #key2 .content-left {
+        width: 100%;
+        text-align: center;
+    }
+
+    
+    .slide-frame {
+        max-width: 75vw;
+    }
+}
+
+@media (max-width:500px) {
+    .slide-frame{
+        max-width: 90vw;
+    }
+}
 
 
 
 
 @media (max-width: 950px) {
-    #key2 {
-        flex-direction: row;
-        padding: 5rem 0;
-    }
 
     #key2 .content-left p {
         font-weight: 500;
@@ -698,18 +718,13 @@ header .nav-us img:hover {
 
     #key2 .content-left,
     #key2 .content-right {
-        padding: 2.5rem 1rem;
+        padding: 2rem 1rem;
     }
 
 }
 
 @media (max-width: 600px) {
-    #key2 {
-        flex-direction: column;
-        /* đổi sang 1 cột */
-        padding: 3rem 0;
-        text-align: center;
-    }
+
 
     #key2 .content-left,
     #key2 .content-right {
@@ -729,7 +744,28 @@ header .nav-us img:hover {
     }
 }
 
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+    height: 100%;
+}
 
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+.swiper-pagination-bullet {
+    background-color: rgba(10, 41, 219, 0.95);
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #ea4808;
+}
 
 /*------------- End Key 2------  */
 
@@ -1294,3 +1330,5 @@ footer {
         font-size: 12px;
     }
 }
+
+
