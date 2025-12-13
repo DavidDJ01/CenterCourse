@@ -315,8 +315,6 @@ header .nav-us img:hover {
     color: transparent;
     animation: chaychu 5s linear infinite;
     text-align: center;
-
-
 }
 
 @keyframes chaychu {
@@ -769,6 +767,27 @@ header .nav-us img:hover {
 
 /*------------- End Key 2------  */
 
+
+#key2 .content-left h2 {
+    text-transform: uppercase;
+    /* background-color: var(--light-gradient);
+    background-clip:  var(--text); */
+    text-shadow: -30px 0 30px rgba(232, 161, 10, 0.4);
+    background-image: linear-gradient(138deg, #16325b 20%, #fab400 80%);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    color: transparent;
+    animation: chaychu 5s linear infinite;
+    text-align: center;
+}
+
+@keyframes chaychu {
+    100% {
+        background-position: 400%;
+    }
+}
 
 
 
