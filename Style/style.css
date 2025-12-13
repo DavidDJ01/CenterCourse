@@ -452,8 +452,8 @@ header .nav-us img:hover {
     width: 50%;
 }
 
-#key2 .content-right{
-     padding: 3rem 2rem;
+#key2 .content-right {
+    padding: 3rem 2rem;
 }
 
 #key2 .content-left h2 {
@@ -490,11 +490,14 @@ header .nav-us img:hover {
     padding: 10px 20px;
 }
 
+/*  slide ảnh key2  */
+
+
 .slide-frame {
     padding: 0;
     width: 100%;
     max-width: 620px;
-    height:auto;
+    height: auto;
     overflow: hidden;
     border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3),
@@ -502,6 +505,7 @@ header .nav-us img:hover {
         0 0 25px rgba(50, 120, 255, 0.3),
         /* glow nhẹ màu xanh dương */
         inset 0 0 10px rgba(255, 255, 255, 0.05);
+    position: relative;
 }
 
 .slide-track {
@@ -509,12 +513,13 @@ header .nav-us img:hover {
     width: calc(620px * 6);
     transform: translateX(0);
     transition: 1s;
-    animation: slideShowPC 9s infinite ease-in-out 1s;
+    animation: slideShow 9s infinite ease-in-out 1s;
+    transition: margin-left 0.5s ease;
 }
 
 .slide-track img {
     display: block;
-    width: 620px;
+    width: calc(100%/6);
     height: 100%;
     object-fit: contain;
     /* giữ toàn bộ ảnh, không cắt */
@@ -533,22 +538,22 @@ header .nav-us img:hover {
 
     .slide-frame {
         width: 100%;
-        max-width: 420px;
         height: auto;
         text-align: center;
         margin: auto;
+        overflow: hidden;
 
     }
 
     .slide-track {
         display: flex;
-        width: calc(420px * 6);
-        animation: slideShowMobile 9s infinite ease-in-out 1s;
+        width: 600%;
+        animation: slideShow 9s infinite ease-in-out 1s;
     }
 
     .slide-track img {
         display: block !important;
-        width: 420px;
+        width: calc(100%/6) !important;
         height: 100%;
         object-fit: contain;
         object-position: center;
@@ -556,45 +561,79 @@ header .nav-us img:hover {
 
     }
 
-    #key2 .content-left{
+    #key2 .content-left {
         width: 100%;
         text-align: center;
     }
-}
-
-@media (max-width:420px){
-     .slide-frame {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-    }
-
 }
 
 @media (max-width:1000px) {
 
+    #key2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* 1 cột */
+        grid-auto-rows: auto;
+        /* chiều cao tự động theo nội dung */
+        gap: 10px;
+    }
+
+    #key2 .content-left {
+        width: 100%;
+        text-align: center;
+    }
+
     .slide-frame {
         width: 100%;
-        max-width: 420px;
+        max-width: 100vh;
         height: auto;
 
     }
 
     .slide-track {
         display: flex;
-        width: calc(420px * 6);
-        animation: slideShowMobile 9s infinite ease-in-out 1s;
+        transform: translate(0);
+        width: 600%;
+        animation: slideShow 12s infinite ease-in-out 1s;
     }
 
     .slide-track img {
         display: block !important;
-        width: 420px;
+        width: calc(100%/6);
         height: 100%;
         object-fit: contain;
         object-position: center;
+
         /* giữ toàn bộ ảnh, không cắt */
 
     }
+}
+
+/* Nav dots */
+.slider-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.slider-nav input[type="radio"] {
+    display: none;
+}
+
+.slider-nav label {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(10, 41, 219, 0.951);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slider-nav input[type="radio"]:checked+label {
+    background-color: #ea4808;
 }
 
 
@@ -604,43 +643,43 @@ header .nav-us img:hover {
     transition: transform 0.4s ease;
 }
 
-@keyframes slideShowMobile {
 
-    0%, 16.66%   { margin-left: calc(0);}
-  16.67%, 33.33% { margin-left: calc(-100%); }
-  33.34%, 50% { transform: translateX(calc(100% * 2)); }
-  50.01%, 66.66% { transform: translateX(calc(100% * 3)); }
-  66.67%, 83.33% { transform: translateX(calc(100% * 4)); }
-  83.34%, 100% { transform: translateX(calc(100% * 5)); }
-    /* quay về ảnh 1 */
-}
 
-@keyframes slideShowPC {
+/* @keyframes slideShow {
 
     0%,
-    25% {
-        transform: translateX(0);
+    10% {
+        margin-left: 0%;
     }
 
-    /* ảnh 1 đứng yên */
-    26%,
+    16.67%,
+    33.33% {
+        margin-left: -100%;
+    }
+
+    33.34%,
     50% {
-        transform: translateX(-620px);
+        margin-left: -200%;
     }
 
-    /* ảnh 2 đứng yên */
-    51%,
-    75% {
-        transform: translateX(calc(-620px * 2));
+    50.01%,
+    66.66% {
+        margin-left: -300%;
     }
 
-    /* ảnh 3 đứng yên */
+    66.67%,
+    83.33% {
+        margin-left: -400%;
+    }
+
+    83.34%,
     100% {
-        transform: translateX(0);
+        margin-left: -500%;
     }
 
-    /* quay về ảnh 1 */
-}
+
+} */
+
 
 
 
@@ -659,7 +698,7 @@ header .nav-us img:hover {
 
     #key2 .content-left,
     #key2 .content-right {
-        padding: 10rem 1rem;
+        padding: 2.5rem 1rem;
     }
 
 }
