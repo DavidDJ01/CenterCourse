@@ -272,13 +272,28 @@ header .nav-us img:hover {
 
 /* end header section */
 
-/* Start Home Section */
+/*------------ Start Key1------------*/
+
 #key1 {
     display: flex;
     padding: 11rem 0;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
+    margin: auto;
+
+
+    border-radius: 28px;
+
+    background: linear-gradient(180deg,
+            #ffffff,
+            #f7faff);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.08),
+        0 6px 18px rgba(0, 0, 0, 0.06);
+
+    border: 1px solid rgba(0, 120, 255, 0.12);
 }
 
 #key1 .content-left,
@@ -292,13 +307,16 @@ header .nav-us img:hover {
     /* background-color: var(--light-gradient);
     background-clip:  var(--text); */
     text-shadow: -30px 0 30px rgba(232, 161, 10, 0.4);
-    background-image: linear-gradient(138deg, var(--light-gradient)20%, var(--dark-gradient) 80%);
+    background-image: linear-gradient(138deg, #9ed809 20%, #e06f0ced 80%);
     background-size: 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     color: transparent;
     animation: chaychu 5s linear infinite;
+    text-align: center;
+
+
 }
 
 @keyframes chaychu {
@@ -310,11 +328,16 @@ header .nav-us img:hover {
 #key1 .content-left p {
     font-weight: 500;
     line-height: 25px;
-    padding: 0 0 2rem;
+    padding: 1rem 0 2rem;
+    line-height: 1.6;
 }
 
+@media(min-width:800px) {
 
-
+    p .first-p {
+        padding-left: 2.5rem;
+    }
+}
 
 #key1 .content-right {
     height: 70vh;
@@ -340,6 +363,7 @@ header .nav-us img:hover {
 #key1 .content-right img:hover {
     transform: scale(1.05);
 }
+
 
 @media (max-width: 950px) {
     #key1 {
@@ -392,6 +416,287 @@ header .nav-us img:hover {
         border-radius: 8px;
     }
 }
+
+/*------------- End Key 1------  */
+
+
+/*------------- Key 2------  */
+
+
+#key2 {
+    display: flex;
+    padding: 11rem 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    border-radius: 28px;
+
+    background: linear-gradient(180deg,
+            #ffffff,
+            #f7faff);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.08),
+        0 6px 18px rgba(0, 0, 0, 0.06);
+
+    border: 1px solid rgba(0, 120, 255, 0.12);
+}
+
+#key2 .content-left {
+    padding: 3rem 2rem;
+    width: 50%;
+}
+
+#key2 .content-right{
+     padding: 3rem 2rem;
+}
+
+#key2 .content-left h2 {
+
+    font-weight: 700;
+    color: rgba(28, 50, 176, 0.884);
+    text-align: center;
+    animation: chaychu 5s linear infinite;
+}
+
+[data-aos] {
+    will-change: transform, opacity;
+}
+
+#key2 .content-left p {
+    font-weight: 500;
+    line-height: 25px;
+    padding: 1rem 0 2rem;
+    line-height: 1.7;
+}
+
+@media(min-width:800px) {
+
+    p .first-p {
+        padding-left: 2.5rem;
+    }
+}
+
+#key2 .content-right {
+    /* full chiều cao màn hình */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.slide-frame {
+    padding: 0;
+    width: 100%;
+    max-width: 620px;
+    height:auto;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3),
+        /* bóng chính mềm */
+        0 0 25px rgba(50, 120, 255, 0.3),
+        /* glow nhẹ màu xanh dương */
+        inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.slide-track {
+    display: flex;
+    width: calc(620px * 6);
+    transform: translateX(0);
+    transition: 1s;
+    animation: slideShowPC 9s infinite ease-in-out 1s;
+}
+
+.slide-track img {
+    display: block;
+    width: 620px;
+    height: 100%;
+    object-fit: contain;
+    /* giữ toàn bộ ảnh, không cắt */
+    flex-shrink: 0;
+}
+
+@media(min-width:1024px) and (max-width: 1030px) {
+    #key2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* 1 cột */
+        grid-auto-rows: auto;
+        /* chiều cao tự động theo nội dung */
+        gap: 20px;
+    }
+
+    .slide-frame {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        text-align: center;
+        margin: auto;
+
+    }
+
+    .slide-track {
+        display: flex;
+        width: calc(420px * 6);
+        animation: slideShowMobile 9s infinite ease-in-out 1s;
+    }
+
+    .slide-track img {
+        display: block !important;
+        width: 420px;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        /* giữ toàn bộ ảnh, không cắt */
+
+    }
+
+    #key2 .content-left{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width:420px){
+     .slide-frame {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+    }
+
+}
+
+@media (max-width:1000px) {
+
+    .slide-frame {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+
+    }
+
+    .slide-track {
+        display: flex;
+        width: calc(420px * 6);
+        animation: slideShowMobile 9s infinite ease-in-out 1s;
+    }
+
+    .slide-track img {
+        display: block !important;
+        width: 420px;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        /* giữ toàn bộ ảnh, không cắt */
+
+    }
+}
+
+
+
+#key2 .content-right img:hover {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+@keyframes slideShowMobile {
+
+    0%, 16.66%   { margin-left: calc(0);}
+  16.67%, 33.33% { margin-left: calc(-100%); }
+  33.34%, 50% { transform: translateX(calc(100% * 2)); }
+  50.01%, 66.66% { transform: translateX(calc(100% * 3)); }
+  66.67%, 83.33% { transform: translateX(calc(100% * 4)); }
+  83.34%, 100% { transform: translateX(calc(100% * 5)); }
+    /* quay về ảnh 1 */
+}
+
+@keyframes slideShowPC {
+
+    0%,
+    25% {
+        transform: translateX(0);
+    }
+
+    /* ảnh 1 đứng yên */
+    26%,
+    50% {
+        transform: translateX(-620px);
+    }
+
+    /* ảnh 2 đứng yên */
+    51%,
+    75% {
+        transform: translateX(calc(-620px * 2));
+    }
+
+    /* ảnh 3 đứng yên */
+    100% {
+        transform: translateX(0);
+    }
+
+    /* quay về ảnh 1 */
+}
+
+
+
+@media (max-width: 950px) {
+    #key2 {
+        flex-direction: row;
+        padding: 5rem 0;
+    }
+
+    #key2 .content-left p {
+        font-weight: 500;
+        line-height: 25px;
+        padding: 1rem 0 3rem 0;
+    }
+
+
+    #key2 .content-left,
+    #key2 .content-right {
+        padding: 10rem 1rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+    #key2 {
+        flex-direction: column;
+        /* đổi sang 1 cột */
+        padding: 3rem 0;
+        text-align: center;
+    }
+
+    #key2 .content-left,
+    #key2 .content-right {
+        width: 100%;
+        padding: 6rem 1rem;
+    }
+
+    /* ảnh xuống dưới, vừa màn hình */
+    #key2 .content-right {
+        margin-top: 10px;
+        padding: 0 10px;
+    }
+
+    #key2 .content-right img {
+        height: 100%;
+        border-radius: 8px;
+    }
+}
+
+
+
+/*------------- End Key 2------  */
+
+
+
+
 
 
 #box-register {
@@ -578,7 +883,7 @@ header .nav-us img:hover {
 
 #box-register .content .content-right input:focus {
     border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+    box-shadow: 0 0 0 6px rgba(25, 90, 164, 0.836);
 }
 
 .contact-2 {

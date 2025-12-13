@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="Style/style.css">
   <link rel="stylesheet" href="Style/snow.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 <header class="header" id="header">
   <div class="snow"></div>
@@ -28,7 +30,7 @@
       <ul class="nav-menu">
         <li><a href="/" class="nav-link ">Home</a></li>
         <li><a href="/" class="nav-link">About</a></li>
-        <li><a href="/" class="contact">Register</a></li>
+        <li><a href="#box-register" class="contact">Register</a></li>
       </ul>
       <div class="nav-close visible">
         <i class="fas fa-times"></i>
@@ -45,9 +47,9 @@
   <div id="body">
     <section id="key1">
       <div class="content-left">
-        <h2>Tiếng Anh cá nhân hoá theo đúng mục tiêu của bạn</h2>
-        <p>
-          Dựa trên bài test đầu vào,
+        <h2 data-aos="zoom-in" data-aos-delay="500">Tiếng Anh cá nhân hoá theo đúng mục tiêu của bạn</h2>
+        <p data-aos="fade-up" data-aos-delay="500" data-aos-once="false" data-aos-mirror="true">
+          <span class="first-p">Dựa trên</span> bài test đầu vào,
           chúng tôi phân tích chính xác
           điểm mạnh - điểm yếu của bạn.
           Từ đó, chương trình học được
@@ -56,9 +58,40 @@
         </p>
       </div>
       <div class="content-right">
-           <div class="picture-content-right">
-                 <img src="picture/testdauvao.png" alt="">
-           </div>
+        <div class="picture-content-right">
+          <img src="picture/testdauvao.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section id="key2" data-aos="zoom-in" data-aos-delay="200">
+      <div class="content-right">
+        <div class=" slide-frame">
+          <div class="slide-track">
+            <img src="img/giaotiep.png" alt="">
+            <img src="img/ielts.png" alt="">
+            <img src="img/toeic.png" alt="">
+            <img src="img/giaotiep.png" alt="">
+            <img src="img/lichtrinh.png" alt="">
+            <img src="img/lotrinh.png" alt="">
+            <img src="img/lotrinhtoeic.jpg alt="">
+          </div>
+        </div>
+      </div>
+      <div class="content-left">
+        <h2 class="aos-text" data-aos="fade-up" data-aos-delay="400">Lộ trình học cô đọng, đồng hành chất lượng.</h2>
+        <p data-aos="fade-down" data-aos-delay="500">
+          <span class="first-p"> Lộ trình </span>học được thiết kế xoay quanh kiến thức trọng tâm, giúp học viên
+          tập trung và tiến bộ nhanh hơn.
+          Sở hữu tài khoản học trực tuyến EasyEdu, nơi học viên có thể ôn bài và xem rõ sự cải thiện từng giai đoạn.
+          Đồng thời, học viên được truy cập trọn đời kho tài liệu độc quyền của Halo.
+          Halo mở nhiều lớp ở các khung giờ linh hoạt, phù hợp sinh viên và người đi làm.
+          Trong quá trình học, có kiểm tra giữa khoá – cuối khoá và thi thử miễn phí hằng tháng. Lớp sĩ số nhỏ (TOEIC
+          15, IELTS & Giao tiếp 10 – 12) giúp giảng viên theo sát từng học viên. Nhờ vậy, học viên luôn được đồng hành,
+          hỗ
+          trợ kịp thời và duy trì hiệu quả học ổn định.
+
+        </p>
       </div>
     </section>
 
@@ -67,7 +100,7 @@
     <section id="box-register">
       <div class="content">
         <div class="icon">
-          <a href="https://zalo.me/g/tekvvj016"> <img src="picture/zalo.png" alt="Zalo"> </a>
+          <a href="https://zalo.me/g/tekvvj016"> <img src="picture/zalo.jpg" alt="Zalo"> </a>
         </div>
         <div class="snow"></div>
         <svg class="bgRegister" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg"
@@ -146,5 +179,14 @@
 <div class="notifications"></div>
 <script src="js/action.js" defer></script>
 <script src="js/call-Api.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 700,
+    easing: "ease-out-cubic",
+    once: false,
+    mirror: true
+  });
+</script>
 
 </html>
