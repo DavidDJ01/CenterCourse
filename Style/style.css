@@ -1074,7 +1074,7 @@ footer {
     background-color: var(--topiccolor);
     color: #fff;
     overflow-wrap: break-word;
-    position: relative;
+    position: static !important;
 }
 
 .footer-list {
@@ -1430,9 +1430,3 @@ footer {
 
 }
 
-@media (max-width: 768px) {
-    #box-register .content {
-        min-height: auto;
-        padding-bottom: 120px; /* đẩy footer xuống */
-    }
-}
