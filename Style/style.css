@@ -798,7 +798,7 @@ header .nav-us img:hover {
 
     display: grid;
     grid-column: 1fr;
-    padding: 2rem 0 200px;
+    padding: 2rem 0 5rem;
     align-items: center;
     border-radius: 28px;
     margin-top: 20px;
@@ -1075,8 +1075,8 @@ footer {
     height: auto;
     background-color: var(--topiccolor);
     color: #fff;
-    overflow-wrap: break-word;
-    position: static !important;
+    overflow: hidden ;
+    position: relative !important;
 }
 
 .footer-list {
