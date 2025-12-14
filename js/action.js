@@ -25,3 +25,18 @@ radios.forEach((radio, index) => {
         });
 });
 
+const footer = document.querySelector("#footer")
+
+const inputEle = document.querySelectorAll("#register input")
+       inputEle.forEach((ele,index) => {
+            ele.addEventListener("focus", () => {
+                      footer.style.display = "none"
+            })
+
+            ele.addEventListener("blur" , () => {
+                 footer.style.display = "block"
+            })
+       })
+
+
+
