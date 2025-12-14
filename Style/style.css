@@ -795,6 +795,7 @@ header .nav-us img:hover {
 
 
 #box-register {
+
     display: grid;
     grid-column: 1fr;
     padding: 2rem 0 200px;
@@ -811,7 +812,7 @@ header .nav-us img:hover {
         0 6px 18px rgba(0, 0, 0, 0.06);
 
     border: 1px solid rgba(0, 120, 255, 0.12);
-    position: relative;
+
 }
 
 #box-register h2 {
@@ -843,6 +844,7 @@ header .nav-us img:hover {
     position: relative;
     display: grid;
     grid-column: 1f;
+
 }
 
 
@@ -852,7 +854,6 @@ header .nav-us img:hover {
         background-position: 400%;
     }
 }
-
 
 #box-register .content {
     position: relative;
@@ -866,7 +867,8 @@ header .nav-us img:hover {
     display: flex;
     align-items: center;
     width: auto;
-    height: 30rem;
+    min-height: 30rem;
+    height: auto;   /* quan trọng */
 
 }
 
@@ -1425,8 +1427,7 @@ footer {
     }
 
     .footer-data:nth-child(3) {
-         grid-column: 2;
+        grid-column: 2;
     }
 
 }
-
