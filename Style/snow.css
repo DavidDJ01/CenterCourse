@@ -28,7 +28,7 @@
 
 /* LAYER 2 (khác tốc độ để tạo cảm giác tự nhiên) */
 .snow::after {
-  animation: snowMove2 60s linear infinite;
+  animation: snowMove2 70s linear infinite;
   opacity: 0.2;
 }
 
