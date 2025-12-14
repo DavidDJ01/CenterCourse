@@ -1,6 +1,8 @@
 
 document.querySelector("#btnIcon").addEventListener("click", function () {
         var state = document.querySelector(".sub-nav")
+        var navres = document.querySelector(".nav-res")
+        navres.style.marginLeft = "83px";
         state.classList.toggle("active")
         console.log("Oke")
 
