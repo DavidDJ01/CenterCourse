@@ -797,7 +797,7 @@ header .nav-us img:hover {
 #box-register {
     display: grid;
     grid-column: 1fr;
-    padding: 2rem 0 4rem;
+    padding: 2rem 0 200px;
     align-items: center;
     border-radius: 28px;
     margin-top: 20px;
