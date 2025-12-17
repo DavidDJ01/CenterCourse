@@ -122,10 +122,76 @@ $(document).ready(async function () {
   var userAgent = navigator.userAgent;
   console.log(userAgent);
   var isDevid = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  if (isDevid)
+
+     // Lưu tổng thời gian user ở từng div
+    const timeSpent = {};
+
+    // Lưu thời điểm user bắt đầu xem div
+    let currentSection = null;
+    let enterTime = null;
+  if (isDevid) {
     User.TypeDevice = "MobiePhone";
+
+ 
+    $(".listenMouse").each(function () {
+      const key = $(this).data("info")
+      timeSpent[key] = 0;
+    })
+
+    // Tạo observer để theo dõi mỗi div
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const $sec = $(entry.target);
+        const key = $sec.data("info");
+
+        if (entry.isIntersecting) {
+          // User vừa vào div
+          currentSection = key;
+          enterTime = Date.now();
+        } else {
+          // User rời div
+          if (currentSection === key && enterTime) {
+            const duration = Date.now() - enterTime;
+            timeSpent[key] += duration;
+
+            currentSection = null;
+            enterTime = null;
+          }
+        }
+      });
+    },
+      {
+        threshold: 0.6 // 60% div xuất hiện mới tính
+      }
+    );
+
+    // Gán observer cho tất cả div
+    $(".listenMouse").each(() => {
+      observer.observe(this);
+    });
+  }
   else {
     User.TypeDevice = "Computer"
+
+    $(".listenMouse").on("mouseenter", function () {
+      currentSection = $(this).data("info");
+      enterTime = Date.now();
+
+      if (!timeSpent[currentSection]) {  // lúc này gán div vào obj và kiểm tra logic nếu data = undefine thì  mới khởi tạo| để chạy if thì phải true cho nên !undefine = true
+        timeSpent[currentSection] = 0; // { div1 : 0 } nếu ko gán sẽ = undefine || {div1 : undefine}
+      }
+    });
+
+    $(".listenMouse").on("mouseleave", function () {
+      if (!currentSection) return;
+
+      const duration = Date.now() - enterTime;
+      timeSpent[currentSection] += duration; // 
+
+      currentSection = null;
+      enterTime = 0;
+    });
+
   }
 
   let clickCount = 0;
@@ -147,28 +213,6 @@ $(document).ready(async function () {
 
   // check User pause on div 
 
-  const stayTime = {};     // tổng thời gian dừng (ms)
-  let enterTime = 0;
-  let currentDiv = null;
-
-  $(".listenMouse").on("mouseenter", function () {
-    currentDiv = $(this).data("info");
-    enterTime = Date.now();
-
-    if (!stayTime[currentDiv]) {  // lúc này gán div vào obj và kiểm tra logic nếu data = undefine thì  mới khởi tạo| để chạy if thì phải true cho nên !undefine = true
-      stayTime[currentDiv] = 0; // { div1 : 0 } nếu ko gán sẽ = undefine || {div1 : undefine}
-    }
-  });
-
-  $(".listenMouse").on("mouseleave", function () {
-    if (!currentDiv) return;
-
-    const duration = Date.now() - enterTime;
-    stayTime[currentDiv] += duration; // 
-
-    currentDiv = null;
-    enterTime = 0;
-  });
 
   // Khi người dùng rời trang → tính kết quả
 
@@ -177,15 +221,15 @@ $(document).ready(async function () {
     let maxDiv = null;
     let maxTime = 0;
 
-    for (let div in stayTime) {
-      if (stayTime[div] > maxTime) {
-        maxTime = stayTime[div];
+    for (let div in timeSpent) {
+      if (timeSpent[div] > maxTime) {
+        maxTime = timeSpent[div];
         maxDiv = div;
       }
     }
     console.log("Div ở lâu nhất:", maxDiv);
     console.log("Thời gian (giây):", (maxTime / 1000).toFixed(2));
-    return `Key lâu nhất: ${maxDiv}, Time: ${(maxTime / 1000).toFixed(2)}`
+    return `Key lâu nhất: key ${maxDiv}, Time: ${(maxTime / 1000).toFixed(2)}`
   }
 
 
@@ -196,7 +240,7 @@ $(document).ready(async function () {
   function sendHeartbeat() {
     var strTimePauseKey = showResult();
     setDoc(doc(ManagerBehaviosUser, userId), {
-      TimePauseKey : strTimePauseKey,
+      TimePauseKey: strTimePauseKey,
       SumMouseClick: clickCount,
       lastSeen: serverTimestamp()
     }, { merge: true })  // merge: true để không ghi đè toàn bộ doc
