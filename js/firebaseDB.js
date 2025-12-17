@@ -162,7 +162,7 @@ $(document).ready(async function () {
       });
     },
       {
-        threshold: 0.6 // 60% div xuất hiện mới tính
+        threshold: 0.3 // 60% div xuất hiện mới tính
       }
 
 
