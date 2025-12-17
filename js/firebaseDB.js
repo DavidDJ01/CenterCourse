@@ -123,16 +123,17 @@ $(document).ready(async function () {
   console.log(userAgent);
   var isDevid = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-     // Lưu tổng thời gian user ở từng div
-    const timeSpent = {};
+  // Lưu tổng thời gian user ở từng div
+  const timeSpent = {};
 
-    // Lưu thời điểm user bắt đầu xem div
-    let currentSection = null;
-    let enterTime = null;
+  // Lưu thời điểm user bắt đầu xem div
+  let currentSection = null;
+  let enterTime = null;
   if (isDevid) {
+
     User.TypeDevice = "MobiePhone";
 
- 
+
     $(".listenMouse").each(function () {
       const key = $(this).data("info")
       timeSpent[key] = 0;
@@ -163,10 +164,11 @@ $(document).ready(async function () {
       {
         threshold: 0.6 // 60% div xuất hiện mới tính
       }
-    );
 
+
+    );
     // Gán observer cho tất cả div
-    $(".listenMouse").each(() => {
+    $(".listenMouse").each(function(){
       observer.observe(this);
     });
   }
