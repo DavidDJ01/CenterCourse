@@ -127,8 +127,7 @@ $(document).ready(async function () {
   const timeSpent = {};
 
   // Lưu thời điểm user bắt đầu xem div
-  let currentSection = null;
-  let enterTime = null;
+  let enterTime = {};
   if (isDevid) {
 
     User.TypeDevice = "MobiePhone";
@@ -142,21 +141,19 @@ $(document).ready(async function () {
     // Tạo observer để theo dõi mỗi div
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const $sec = $(entry.target);
-        const key = $sec.data("info");
+        const key = entry.target.dataset.info;
 
         if (entry.isIntersecting) {
           // User vừa vào div
-          currentSection = key;
-          enterTime = Date.now();
+          // vào viewport
+          if (!enterTime[key]) {
+            enterTime[key] = Date.now();
+          }
         } else {
           // User rời div
-          if (currentSection === key && enterTime) {
-            const duration = Date.now() - enterTime;
-            timeSpent[key] += duration;
-
-            currentSection = null;
-            enterTime = null;
+          if (enterTime[key]) {
+            timeSpent[key] += Date.now() - enterTime[key];
+            delete enterTime[key];
           }
         }
       });
@@ -168,30 +165,29 @@ $(document).ready(async function () {
 
     );
     // Gán observer cho tất cả div
-    $(".listenMouse").each(function(){
-      observer.observe(this);
+    $(".listenMouse").each(function () {
+      observer.observe(this); // this = DOM element
     });
   }
   else {
     User.TypeDevice = "Computer"
 
     $(".listenMouse").on("mouseenter", function () {
-      currentSection = $(this).data("info");
-      enterTime = Date.now();
+      const key = this.dataset.info;
+      enterTime[key] = Date.now();
 
-      if (!timeSpent[currentSection]) {  // lúc này gán div vào obj và kiểm tra logic nếu data = undefine thì  mới khởi tạo| để chạy if thì phải true cho nên !undefine = true
-        timeSpent[currentSection] = 0; // { div1 : 0 } nếu ko gán sẽ = undefine || {div1 : undefine}
+      if (!timeSpent[key]) {
+        timeSpent[key] = 0;
       }
     });
 
     $(".listenMouse").on("mouseleave", function () {
-      if (!currentSection) return;
+      const key = this.dataset.info;
 
-      const duration = Date.now() - enterTime;
-      timeSpent[currentSection] += duration; // 
-
-      currentSection = null;
-      enterTime = 0;
+      if (enterTime[key]) {
+        timeSpent[key] += Date.now() - enterTime[key];
+        delete enterTime[key];
+      }
     });
 
   }
