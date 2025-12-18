@@ -142,7 +142,11 @@ $(document).ready(async function () {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const key = entry.target.dataset.info;
-
+        // console.log({
+        //   key: entry.target.dataset.info,
+        //   isIntersecting: entry.isIntersecting,
+        //   ratio: entry.intersectionRatio
+        // });
         if (entry.isIntersecting) {
           // User vừa vào div
           // vào viewport
@@ -218,11 +222,18 @@ $(document).ready(async function () {
   function showResult() {
     let maxDiv = null;
     let maxTime = 0;
+    const now = Date.now()
 
-    for (let div in timeSpent) {
-      if (timeSpent[div] > maxTime) {
-        maxTime = timeSpent[div];
-        maxDiv = div;
+    for (let key in timeSpent) {
+      let total = timeSpent[key];
+
+      if (enterTime[key]) {
+        total += now - enterTime[key];
+      }
+
+      if (total > maxTime) {
+        maxTime = total;
+        maxDiv = key;
       }
     }
     console.log("Div ở lâu nhất:", maxDiv);
