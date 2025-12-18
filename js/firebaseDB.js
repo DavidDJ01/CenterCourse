@@ -207,7 +207,7 @@ $(document).ready(async function () {
 
   if (!userId) {
     userId = "user_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    // setCookie("userid", userId, 365);
+    setCookie("userid", userId, 365);
     await addData(User)
   }
   //UpdateData()
