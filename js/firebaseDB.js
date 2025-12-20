@@ -196,28 +196,21 @@ $(document).ready(async function () {
 
   }
 
-  let clickCount = 0;
+  // let clickCount = 0;
 
-  $(document).click(function (e) {
-    clickCount++
-  });
+  // $(document).click(function (e) {
+  //   clickCount++
+  // });
 
   var now = new Date();
   User.DateComeToWeb = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`
 
   if (!userId) {
     userId = "user_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    setCookie("userid", userId, 365);
+    // setCookie("userid", userId, 365);
     await addData(User)
   }
   //UpdateData()
-
-
-  // check User pause on div 
-
-
-  // Khi người dùng rời trang → tính kết quả
-
 
   function showResult() {
     let maxDiv = null;
@@ -241,16 +234,13 @@ $(document).ready(async function () {
     return `Key lâu nhất: key ${maxDiv}, Time: ${(maxTime / 1000).toFixed(2)}`
   }
 
-
   //  --------------- mai update----
-
 
   // check state
   function sendHeartbeat() {
     var strTimePauseKey = showResult();
     setDoc(doc(ManagerBehaviosUser, userId), {
       TimePauseKey: strTimePauseKey,
-      SumMouseClick: clickCount,
       lastSeen: serverTimestamp()
     }, { merge: true })  // merge: true để không ghi đè toàn bộ doc
       .catch(err => console.error("Lỗi gửi heartbeat:", err));
@@ -258,23 +248,5 @@ $(document).ready(async function () {
   // Bắt đầu heartbeat
   setInterval(sendHeartbeat, 20000);
   sendHeartbeat(); // gửi ngay khi load trang
-
-  // let lastSeenCache = null;
-
-  // onSnapshot(doc(ManagerBehaviosUser, userId), (docSnap) => {
-  //   if (docSnap.exists()) {
-  //     lastSeenCache = docSnap.data().lastSeen;
-  //   }
-  // });
-
-
-  // let lastOnlineState = null; // null | true | false
-
-  // function isUserOnline(lastSeen) {
-  //   if (!lastSeen) return false;
-
-  //   const diff = Date.now() - lastSeen.toMillis();
-  //   return diff < 30000; // 30s
-  // }
 
 });
