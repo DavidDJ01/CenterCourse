@@ -12,10 +12,14 @@ import {
   doc,
   deleteDoc,
   serverTimestamp,
-  onSnapshot
+  onSnapshot,
+  runTransaction,
+  enableIndexedDbPersistence
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 import { getAuth, signInAnonymously } from
   "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,18 +38,59 @@ const firebaseConfig = {
 $(document).ready(async function () {
 
 
-  // Initialize Firebase
+  // Initialize Firebase --- Set Up-----
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   var auth = getAuth(app)
   var db = getFirestore(app)
 
-  await signInAnonymously(auth)
+  await signInAnonymously(auth);
+
+  await new Promise(resolve => {
+    auth.onAuthStateChanged(user => {
+      if (user) resolve(user);
+    });
+  });
+
+  enableIndexedDbPersistence(db).catch(() => { });
+
+  //------ end setup--------
 
   const ManagerBehaviosUser = collection(db, "UserInfoLoadWeb_Db")
-  var userId = getCookie("userid");
-
+  // const createUserId = auth.currentUser;
+  // var userId = createUserId.uid;
   var User = {}
+
+  async function createUserWithTransaction(db, collectionRef, userData, maxRetry = 5) {
+  let finalUserId = null;
+  for (let i = 0; i < maxRetry; i++) {
+    const userId = "user_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+    const userRef = doc(collectionRef, userId);
+
+    try {
+      await runTransaction(db, async (transaction) => {
+        const snap = await transaction.get(userRef);  // đọc
+
+        if (snap.exists()) {   // kiểm tra
+          throw "ID_COLLISION";  
+        }
+        transaction.set(userRef, userData); // ghi
+      });
+
+      finalUserId = userId;
+      return finalUserId; // ✅ THÀNH CÔNG
+    } catch (err) {
+      if (err !== "ID_COLLISION") {
+        throw err; // lỗi khác thì dừng
+      }
+      // nếu trùng ID → vòng for chạy lại → sinh ID mới
+    }
+  }
+
+  throw new Error("FAILED_TO_GENERATE_UNIQUE_ID");
+}
+
+
 
   async function getData() {
     await getDocs(ManagerBehaviosUser).then((query) => {
@@ -72,12 +117,23 @@ $(document).ready(async function () {
         console.warn("success")
       })
     } else {
-      userId = userId + `_${Date.now()}`;
-      await setDoc(doc(ManagerBehaviosUser, userId), user, { merge: true }).then(() => {
+      await setDoc(doc(ManagerBehaviosUser, userId + "_dup_" + Date.now()), user, { merge: true }).then(() => {
         console.warn("success")
       })
     }
   }
+
+  async function safeSetDoc(ref, data, retry = 3) {
+    try {
+      await setDoc(ref, data, { merge: true });
+    } catch (err) {
+      console.error("Firestore write failed:", err);
+      if (retry > 0) {
+        setTimeout(() => safeSetDoc(ref, data, retry - 1), 1000);
+      }
+    }
+  }
+
 
   async function UpdateData(userid, data) {
     await setDoc(doc(ManagerBehaviosUser, userid), { TimePauseKey: data.timePause, status: data.status }, { merge: true })
@@ -117,7 +173,7 @@ $(document).ready(async function () {
   // UpdateData()
 
   // addData()
-  // UserId  => ( SumMouseClick V), TypeDevice(v), TimePauseKey, TimeDateComeWeb(v), State(v) )
+
 
   var userAgent = navigator.userAgent;
   console.log(userAgent);
@@ -205,12 +261,19 @@ $(document).ready(async function () {
   var now = new Date();
   User.DateComeToWeb = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`
 
-  if (!userId) {
-    userId = "user_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    // setCookie("userid", userId, 365);
-    await addData(User)
-  }
-  //UpdateData()
+  // if (!userId) {
+  //   userId = "user_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+  //   // setCookie("userid", userId, 365);
+  // }
+  var userId = await createUserWithTransaction(
+    db,
+    ManagerBehaviosUser,
+    {
+      ...User,
+      firstSeen: serverTimestamp(),
+    }
+  );
+
 
   function showResult() {
     let maxDiv = null;
@@ -239,11 +302,13 @@ $(document).ready(async function () {
   // check state
   function sendHeartbeat() {
     var strTimePauseKey = showResult();
-    setDoc(doc(ManagerBehaviosUser, userId), {
-      TimePauseKey: strTimePauseKey,
-      lastSeen: serverTimestamp()
-    }, { merge: true })  // merge: true để không ghi đè toàn bộ doc
-      .catch(err => console.error("Lỗi gửi heartbeat:", err));
+    safeSetDoc(
+      doc(ManagerBehaviosUser, userId),
+      {
+        TimePauseKey: strTimePauseKey,
+        lastSeen: serverTimestamp()
+      }
+    );
   }
   // Bắt đầu heartbeat
   setInterval(sendHeartbeat, 20000);
